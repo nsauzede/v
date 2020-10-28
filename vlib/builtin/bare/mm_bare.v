@@ -18,7 +18,7 @@ pub fn mm_alloc(size u64) (byteptr, Errno) {
 	a, e := sys_mmap(0, n_bytes, mem_prot, mem_flags, -1, 0)
 	if e == .enoerror {
 		mut ap := &int(a)
-		*ap = pages
+		unsafe {*ap = int(pages)}
 		return byteptr(a+4), e
 	}
 	return byteptr(0), e

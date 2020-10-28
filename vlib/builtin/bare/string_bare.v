@@ -29,12 +29,12 @@ fn (s string) add(a string) string {
 		str: malloc(new_len + 1)
 	}
 	for j in 0..s.len {
-		res[j] = s[j]
+		res.str[j] = s[j]
 	}
 	for j in 0..a.len {
-		res[s.len + j] = a[j]
+		res.str[s.len + j] = a[j]
 	}
-	res[new_len] = `\0`// V strings are not null terminated, but just in case
+	res.str[new_len] = `\0`// V strings are not null terminated, but just in case
 	return res
 }
 
@@ -92,18 +92,18 @@ pub fn i64_tos(buf byteptr, len int, n0 i64, base int) string {
 	neg := n < 0
 	if neg { n = -n }
 
-	b[i--] = 0
+	b.str[i--] = 0
 
 	for {
 		c := (n%base) + 48
-		b[i--] = if c > 57 {c+7} else {c}
+		b.str[i--] = if c > 57 {byte(c+7)} else {byte(c)}
 		if i < 0 { panic ("buffer to small") }
 		n /= base
 		if n < 1 {break}
 	}
 	if neg {
 		if i < 0 { panic ("buffer to small") }
-		b[i--] = 45
+		b.str[i--] = 45
 	}
 	offset := i+1
 	b.str = b.str + offset
@@ -129,6 +129,6 @@ pub fn (a string) clone() string {
 		str: malloc(a.len + 1)
 	}
 	mem_copy(b.str, a.str, a.len)
-	b[a.len] = `\0`
+	b.str[a.len] = `\0`
 	return b
 }

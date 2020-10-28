@@ -7,13 +7,13 @@ pub enum Linux_mem {
 pub enum Wp_sys {
 	wnohang = 0x00000001
 	wuntraced = 0x00000002
-	wstopped = 0x00000002
+//	wstopped = 0x00000002
 	wexited	= 0x00000004
 	wcontinued = 0x00000008
 	wnowait = 0x01000000 // don't reap, just poll status.
 	__wnothread = 0x20000000 // don't wait on children of other threads in this group
 	__wall = 0x40000000 // wait on all children, regardless of type
-	__wclone = 0x80000000 // wait only on non-sigchld children
+//	__wclone = 0x80000000 // wait only on non-sigchld children
 }
 
 // First argument to waitid:
@@ -111,7 +111,7 @@ pub enum Fcntl {
 	fd_cloexec = 0x00000001
 	f_dupfd = 0x00000000
 	f_exlck = 0x00000004
-	f_getfd = 0x00000001
+//	f_getfd = 0x00000001
 	f_getfl = 0x00000003
 	f_getlk = 0x00000005
 	f_getlk64 = 0x0000000c
@@ -123,11 +123,11 @@ pub enum Fcntl {
 	f_ofd_setlk = 0x00000025
 	f_ofd_setlkw = 0x00000026
 	f_owner_pgrp = 0x00000002
-	f_owner_pid = 0x00000001
-	f_owner_tid = 0x00000000
-	f_rdlck = 0x00000000
-	f_setfd = 0x00000002
-	f_setfl = 0x00000004
+//	f_owner_pid = 0x00000001
+//	f_owner_tid = 0x00000000
+//	f_rdlck = 0x00000000
+//	f_setfd = 0x00000002
+//	f_setfl = 0x00000004
 	f_setlk = 0x00000006
 	f_setlk64 = 0x0000000d
 	f_setlkw = 0x00000007
@@ -135,36 +135,36 @@ pub enum Fcntl {
 	f_setown = 0x00000008
 	f_setown_ex = 0x0000000f
 	f_setsig = 0x0000000a
-	f_shlck = 0x00000008
-	f_unlck = 0x00000002
-	f_wrlck = 0x00000001
-	lock_ex = 0x00000002
+//	f_shlck = 0x00000008
+//	f_unlck = 0x00000002
+//	f_wrlck = 0x00000001
+//	lock_ex = 0x00000002
 	lock_mand = 0x00000020
-	lock_nb = 0x00000004
+//	lock_nb = 0x00000004
 	lock_read = 0x00000040
 	lock_rw = 0x000000c0
-	lock_sh = 0x00000001
-	lock_un = 0x00000008
+//	lock_sh = 0x00000001
+//	lock_un = 0x00000008
 	lock_write = 0x00000080
-	o_accmode = 0x00000003
+//	o_accmode = 0x00000003
 	o_append = 0x00000400
 	o_cloexec = 0x00080000
-	o_creat = 0x00000040
+//	o_creat = 0x00000040
 	o_direct = 0x00004000
 	o_directory = 0x00010000
 	o_dsync = 0x00001000
-	o_excl = 0x00000080
+//	o_excl = 0x00000080
 	o_largefile = 0x00008000
 	o_ndelay = 0x00000800
 	o_noatime = 0x00040000
 	o_noctty = 0x00000100
 	o_nofollow = 0x00020000
-	o_nonblock = 0x00000800
+//	o_nonblock = 0x00000800
 	o_path = 0x00200000
-	o_rdonly = 0x00000000
-	o_rdwr = 0x00000002
+//	o_rdonly = 0x00000000
+//	o_rdwr = 0x00000002
 	o_trunc = 0x00000200
-	o_wronly = 0x00000001
+//	o_wronly = 0x00000001
 }
 
 pub enum Errno {
@@ -222,12 +222,13 @@ pub enum Map_flags {
 	map_fixed = 0x10
 	map_file = 0x00
 	map_anonymous = 0x20
-	map_anon = 0x20
+//	map_anon = 0x20
 	map_huge_shift = 26
 	map_huge_mask = 0x3f
 }
 
 fn do_not_call_me_asm_keeper0() {
+s := '
 	unsafe {
 		asm {
 			"\n"
@@ -310,6 +311,7 @@ fn do_not_call_me_asm_keeper0() {
 			".att_syntax \n"
 		}
 	}
+	'
 }
 
 fn sys_call0(scn u64) u64
